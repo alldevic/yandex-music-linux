@@ -70,8 +70,6 @@ cd "$TEMPDIR/app"
 echo "Patching .js chunks"
 find "./" -type f \( -name "*.js" -o -name "*.js.map" \) -print0 | while IFS= read -r -d $'\0' file; do
     # Use 'sed' to perform the replacement in-place
-    sed -i 's/l.isLinuxApplication/(window.CUSTOM_TITLE_BAR)/g' "$file"
-    sed -i 's/o.isLinuxApplication/(window.CUSTOM_TITLE_BAR)/g' "$file"
     sed -i 's/panel:!1,allowOverwriteExperiments:!1/panel:window.IS_DEVTOOLS_ENABLED??!1,allowOverwriteExperiments:window.IS_DEVTOOLS_ENABLED??!1/g' "$file"
     sed -i 's/OS",o.LINUX="Linux"}/OS",o.LINUX="Windows"}/g' "$file"
     sed -i 's/LINUX:"98548790"/LINUX:"95673843"/g' "$file"
